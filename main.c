@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #define PvP 0  //pvpモードの時は1にする
+#define EvE 1  //自動解析モードの時は1にする. どっちも0ならpve
 #define CPU_DEPTH 14
 
 #define P1 0
@@ -93,6 +94,14 @@ int main()
         while(1) {
             if (user_turn(&Mboard, P1)) break;
             if (user_turn(&Mboard, P2)) break;
+        }
+    }
+    
+    else if(EvE) {
+        print_board(Mboard);
+        while(1) {
+            if (cpu_turn(&Mboard, P1)) break;
+            if (cpu_turn(&Mboard, P2)) break;
         }
     }
     
